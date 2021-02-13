@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {Box, Container, Paper, Typography} from "@material-ui/core";
+import CustomAlert from "./components/CustomAlert";
+import Text from "./components/Text";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Container maxWidth="md">
+                <Paper style={{height: '600px', marginTop: '100px', padding: '16px'}}>
+                    <Typography variant="h1" style={{fontSize: '36px', marginBottom: '16px'}}>
+                        Тренажер слепой печати
+                    </Typography>
+                    <CustomAlert severity="warning" text="Good bye world" style={{marginBottom: '16px'}}/>
+                    <Box style={{fontSize: "20px", lineHeight: '1.65'}}>
+                        <Text/>
+                    </Box>
+                </Paper>
+            </Container>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,8 @@
+export const FETCH_TEXT = 'FETCH_TEXT';
+export const REQUEST_TEXT = 'REQUEST_TEXT';
+export const SHOW_ALERT = 'SHOW_ALERT';
+export const HIDE_ALERT = 'HIDE_ALERT';
+export const SHOW_LOADER = 'SHOW_LOADER';
+export const HIDE_LOADER = 'HIDE_LOADER';
+export const SET_PASSED_CHAR = 'SET_PASSED_CHAR';
+export const SET_ERRORED_CHAR = 'SET_ERRORED_CHAR';
