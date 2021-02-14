@@ -13,9 +13,21 @@ code {
     monospace;
 }
 
-.passed{
+.next {
+    background-color: aquamarine;
+}
+
+.passed {
     color: greenyellow;
 }
-.errored{
-    color: red;
+
+.errored {
+    background-color: red;
+}
+
+.next, .errored {
+    padding: 3px;
+    border-radius: 4px;
+    color: #fff;
+    /*transition: background-color ease 0.1s;*/
 }

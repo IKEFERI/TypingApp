@@ -1,6 +1,7 @@
 import {Box, Container, Paper, Typography} from "@material-ui/core";
 import CustomAlert from "./components/CustomAlert";
 import Text from "./components/Text";
+import Accuracy from "./components/Accuracy";
 
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
                     <CustomAlert severity="warning" text="Good bye world" style={{marginBottom: '16px'}}/>
                     <Box style={{fontSize: "20px", lineHeight: '1.65'}}>
                         <Text/>
+                    </Box>
+                    <Box>
+                        Accuracy
+                        <Accuracy/>
                     </Box>
                 </Paper>
             </Container>

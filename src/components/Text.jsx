@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {fetchText, setErroredChar, setPassedChar} from "../redux/actions";
+import React, {useEffect} from "react";
+import {fetchText, setAllChars, setCurrentChar, setErroredChar, setPassedChar} from "../redux/actions";
 import Preloader from "./Preloader";
 import Char from "./Char";
 
@@ -9,39 +9,41 @@ const keyPressedEqualToText = (key, char) => {
     return key === char;
 }
 
-
 function Text() {
     const dispatch = useDispatch();
     const text = useSelector(state => state.appState.fetchedText).toString();
     const difficulty = useSelector(state => state.appState.difficultyGame);
     const showLoader = useSelector(state => state.appState.showLoader);
+    const erroredChar = useSelector(state => state.appState.erroredChar);
+    const currentChar = useSelector(state => state.appState.currentChar);
 
     useEffect(() => {
         dispatch(fetchText(difficulty))
-    }, [dispatch, fetchText, difficulty])
-
+    }, [dispatch, fetchText, difficulty]);
 
     useEffect(() => {
+        dispatch(setAllChars(text.length));
+    }, [text]);
 
-        let indexChar = 0;
+    useEffect(() => {
 
         const keyPressedListener = e => {
             let keyPressed = e.key;
             console.log(keyPressed);
-            let char = text[indexChar];
+            let char = text[currentChar];
             let lengthString = text.length;
 
             if (keyPressedEqualToText(keyPressed, char)) {
                 console.log('Catch!');
                 dispatch(setErroredChar(''));
-                dispatch(setPassedChar(indexChar));
-                indexChar++;
+                dispatch(setPassedChar(currentChar));
+                dispatch(setCurrentChar(currentChar + 1));
             } else {
-                dispatch(setErroredChar(indexChar));
-                console.log('Miss! - ', indexChar, char, text)
+                dispatch(setErroredChar(currentChar));
+                console.log('Miss! - ', currentChar, char);
             }
 
-            if (lengthString === (indexChar - 1)) {
+            if (lengthString === (currentChar - 1)) {
                 console.log('Congratulations!!!');
             }
         }
@@ -51,7 +53,7 @@ function Text() {
         return () => {
             document.removeEventListener('keypress', keyPressedListener);
         }
-    }, [text]);
+    }, [currentChar, text, erroredChar]);
 
 
     if (showLoader) {
