@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setAccuracy, setCountErrors} from "../redux/actions";
-import {Typography} from "@material-ui/core";
+import {Paper, Typography} from "@material-ui/core";
 
 const Accuracy = () => {
     const dispatch = useDispatch();
@@ -27,9 +27,10 @@ const Accuracy = () => {
     }, [countErrors]);
 
     return (
-        <Typography variant="h3">
-            {countErrors} , {accuracy}%
-        </Typography>
+        <Paper style={{padding: "24px", marginBottom: "36px"}}>
+            <Typography style={{fontSize: '24px', fontWeight: 600}}>Errors {countErrors}, accuracy: {accuracy}%</Typography>
+
+        </Paper>
     );
 };
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 
 const Char = ({id, char}) => {
-    let [className, setClassName] = useState('default')
+    const [className, setClassName] = useState('default');
 
     const erroredChar = useSelector(state => state.appState.erroredChar);
     const passedChar = useSelector(state => state.appState.passedChar);

@@ -17,8 +17,9 @@ function Text() {
     const erroredChar = useSelector(state => state.appState.erroredChar);
     const currentChar = useSelector(state => state.appState.currentChar);
 
+
     useEffect(() => {
-        dispatch(fetchText(difficulty))
+        dispatch(fetchText(difficulty));
     }, [dispatch, fetchText, difficulty]);
 
     useEffect(() => {
@@ -29,12 +30,10 @@ function Text() {
 
         const keyPressedListener = e => {
             let keyPressed = e.key;
-            console.log(keyPressed);
             let char = text[currentChar];
             let lengthString = text.length;
 
             if (keyPressedEqualToText(keyPressed, char)) {
-                console.log('Catch!');
                 dispatch(setErroredChar(''));
                 dispatch(setPassedChar(currentChar));
                 dispatch(setCurrentChar(currentChar + 1));
@@ -43,7 +42,7 @@ function Text() {
                 console.log('Miss! - ', currentChar, char);
             }
 
-            if (lengthString === (currentChar - 1)) {
+            if ((currentChar-1) === lengthString) {
                 console.log('Congratulations!!!');
             }
         }

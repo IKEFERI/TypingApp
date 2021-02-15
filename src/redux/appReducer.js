@@ -10,12 +10,13 @@ import {
 } from "./types";
 
 const initialState = {
-    fetchedText: "",
+    // ["Pork loin pork chop pig meatball burgdoggen strip steak. Pork chop sirloin bacon, alcatra pig tenderloin fatback jowl."]
+    fetchedText: '',
     showLoader: true,
     showAlert: false,
     difficultyGame: 1,
-    erroredChar: '',
-    passedChar: '',
+    erroredChar: null,
+    passedChar: null,
     currentChar: 0,
     countErrors: 0,
     allChars: 0,

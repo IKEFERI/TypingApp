@@ -1,7 +1,9 @@
-import {Box, Container, Paper, Typography} from "@material-ui/core";
+import {Box, Container, Grid, Paper, Typography} from "@material-ui/core";
 import CustomAlert from "./components/CustomAlert";
 import Text from "./components/Text";
 import Accuracy from "./components/Accuracy";
+import SpeedometerClass from "./components/SpeedometerClass";
+import Speedometer from "./components/Speedometer";
 
 
 function App() {
@@ -16,10 +18,18 @@ function App() {
                     <Box style={{fontSize: "20px", lineHeight: '1.65'}}>
                         <Text/>
                     </Box>
-                    <Box>
-                        Accuracy
-                        <Accuracy/>
-                    </Box>
+                    <Grid>
+                        <Box>
+                            <Accuracy/>
+                        </Box>
+                        <Box>
+                            <SpeedometerClass/>
+                        </Box>
+                        <Box>
+                            <Speedometer/>
+                        </Box>
+                    </Grid>
+
                 </Paper>
             </Container>
         </div>

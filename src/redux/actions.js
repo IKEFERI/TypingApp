@@ -46,4 +46,3 @@ export function setAllChars(numb) {
 export function setAccuracy(percent) {
     return {type: SET_ACCURACY, percent}
 }
-
