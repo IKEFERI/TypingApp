@@ -19,8 +19,8 @@ export function hideLoader() {
     return {type: HIDE_LOADER}
 }
 
-export function showAlert(text) {
-    return {type: SHOW_ALERT, text}
+export function showAlert() {
+    return {type: SHOW_ALERT}
 }
 
 export function setErroredChar(key) {

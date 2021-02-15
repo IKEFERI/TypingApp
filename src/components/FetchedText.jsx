@@ -6,10 +6,10 @@ import Char from "./Char";
 
 
 const keyPressedEqualToText = (key, char) => {
-    return key === char;
+        return key === char;
 }
 
-function Text() {
+function FetchedText() {
     const dispatch = useDispatch();
     const text = useSelector(state => state.appState.fetchedText).toString();
     const difficulty = useSelector(state => state.appState.difficultyGame);
@@ -20,7 +20,7 @@ function Text() {
 
     useEffect(() => {
         dispatch(fetchText(difficulty));
-    }, [dispatch, fetchText, difficulty]);
+    }, [difficulty]);
 
     useEffect(() => {
         dispatch(setAllChars(text.length));
@@ -33,24 +33,27 @@ function Text() {
             let char = text[currentChar];
             let lengthString = text.length;
 
+            if(keyPressed === 'Shift'){
+                return;
+            }
+
             if (keyPressedEqualToText(keyPressed, char)) {
                 dispatch(setErroredChar(''));
                 dispatch(setPassedChar(currentChar));
                 dispatch(setCurrentChar(currentChar + 1));
             } else {
                 dispatch(setErroredChar(currentChar));
-                console.log('Miss! - ', currentChar, char);
             }
 
-            if ((currentChar-1) === lengthString) {
+            if (currentChar === lengthString) {
                 console.log('Congratulations!!!');
             }
         }
 
-        document.addEventListener('keypress', keyPressedListener);
+        document.addEventListener('keydown', keyPressedListener);
 
         return () => {
-            document.removeEventListener('keypress', keyPressedListener);
+            document.removeEventListener('keydown', keyPressedListener);
         }
     }, [currentChar, text, erroredChar]);
 
@@ -64,4 +67,4 @@ function Text() {
     });
 }
 
-export default Text;
+export default FetchedText;

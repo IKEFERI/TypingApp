@@ -13,8 +13,7 @@ function* sagaWorker() {
         yield put({type: FETCH_TEXT, payload});
         yield put(hideLoader());
     } catch (e) {
-        let errText = 'Загрузка не удалась( Попробуйте снова'
-        yield put(showAlert(errText));
+        yield put(showAlert());
         yield put(hideLoader());
     }
 

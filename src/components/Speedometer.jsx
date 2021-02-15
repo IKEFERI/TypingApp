@@ -19,7 +19,7 @@ const Speedometer = () => {
     return (
         <Paper style={{padding: "24px", marginBottom: "36px"}}>
             <Typography style={{fontSize: '24px', fontWeight: 600}}>
-                {speed} char/min
+                Знаков в минуту: {speed}
             </Typography>
         </Paper>
     );

@@ -2,7 +2,7 @@ import {
     FETCH_TEXT,
     HIDE_ALERT,
     HIDE_LOADER,
-    REQUEST_TEXT, SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR,
+    SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR,
     SET_ERRORED_CHAR,
     SET_PASSED_CHAR,
     SHOW_ALERT,
@@ -20,15 +20,12 @@ const initialState = {
     currentChar: 0,
     countErrors: 0,
     allChars: 0,
-    accuracy: 100.00,
-    textAlert: ''
+    accuracy: 100.00
 }
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_TEXT:
             return {...state, fetchedText: action.payload}
-        case REQUEST_TEXT:
-            return {...state,}
         case SHOW_LOADER:
             return {...state, showLoader: true}
         case SHOW_ALERT:

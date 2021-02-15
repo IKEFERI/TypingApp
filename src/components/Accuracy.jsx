@@ -18,18 +18,15 @@ const Accuracy = () => {
     }, [erroredChar]);
 
     useEffect(() => {
-        let newAccuracy = 0;
-        newAccuracy = (1000 - Math.round(1000 * countErrors / allChars)) / 10;
-
+        const newAccuracy = (1000 - Math.round(1000 * countErrors / allChars)) / 10;
         if (newAccuracy) {
             dispatch(setAccuracy(newAccuracy));
         }
     }, [countErrors]);
 
     return (
-        <Paper style={{padding: "24px", marginBottom: "36px"}}>
-            <Typography style={{fontSize: '24px', fontWeight: 600}}>Errors {countErrors}, accuracy: {accuracy}%</Typography>
-
+        <Paper style={{padding: "24px"}}>
+            <Typography style={{fontSize: '24px', fontWeight: 600}}>Ошибки: {countErrors} <br/> Точность нажатий: {accuracy}%</Typography>
         </Paper>
     );
 };
