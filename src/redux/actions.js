@@ -1,14 +1,14 @@
 import {
     HIDE_LOADER,
-    REQUEST_TEXT, SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR,
+    REQUEST_TEXT, SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR, SET_DIFFICULTY_GAME, SET_DONE_GAME,
     SET_ERRORED_CHAR,
-    SET_PASSED_CHAR,
+    SET_PASSED_CHAR, SET_SPEED, SET_START_GAME,
     SHOW_ALERT,
     SHOW_LOADER
 } from "./types";
 
-export function fetchText(numbParas) {
-    return {type: REQUEST_TEXT, numbParas}
+export function fetchText(difficult) {
+    return {type: REQUEST_TEXT, difficult}
 }
 
 export function showLoader() {
@@ -45,4 +45,21 @@ export function setAllChars(numb) {
 
 export function setAccuracy(percent) {
     return {type: SET_ACCURACY, percent}
+}
+
+export function setSpeed(speed) {
+    return {type: SET_SPEED, speed}
+}
+
+
+export function setDoneGame() {
+    return {type: SET_DONE_GAME}
+}
+
+export function resetGame() {
+    return {type: SET_START_GAME}
+}
+
+export function setDifficultyGame(difficult) {
+    return {type: SET_DIFFICULTY_GAME, difficult}
 }

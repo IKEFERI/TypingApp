@@ -1,12 +1,30 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
-import {fetchText, setAllChars, setCurrentChar, setErroredChar, setPassedChar} from "../redux/actions";
+import {
+    fetchText,
+    resetGame,
+    setAllChars,
+    setCurrentChar,
+    setDoneGame,
+    setErroredChar,
+    setPassedChar
+} from "../redux/actions";
 import Preloader from "./Preloader";
 import Char from "./Char";
 
 
 const keyPressedEqualToText = (key, char) => {
         return key === char;
+}
+
+const checkKeyboard = (e)=>{
+   const regex = /\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g;
+   const match = e.key.match(regex);
+    if (match === null){
+        alert('Error 2:\nNon English keyboard layout is detected!\nSet the keyboard layout to English and try to fill out the field again.');
+        return false;
+    }
+    return true;
 }
 
 function FetchedText() {
@@ -17,22 +35,21 @@ function FetchedText() {
     const erroredChar = useSelector(state => state.appState.erroredChar);
     const currentChar = useSelector(state => state.appState.currentChar);
 
-
     useEffect(() => {
-        dispatch(fetchText(difficulty));
+        if(difficulty){
+            dispatch(fetchText(difficulty));
+        }
     }, [difficulty]);
 
     useEffect(() => {
         dispatch(setAllChars(text.length));
-    }, [text]);
+    }, [text,resetGame]);
 
     useEffect(() => {
 
         const keyPressedListener = e => {
             let keyPressed = e.key;
             let char = text[currentChar];
-            let lengthString = text.length;
-
             if(keyPressed === 'Shift'){
                 return;
             }
@@ -43,10 +60,6 @@ function FetchedText() {
                 dispatch(setCurrentChar(currentChar + 1));
             } else {
                 dispatch(setErroredChar(currentChar));
-            }
-
-            if (currentChar === lengthString) {
-                console.log('Congratulations!!!');
             }
         }
 

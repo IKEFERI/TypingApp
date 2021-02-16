@@ -2,11 +2,12 @@ import {
     FETCH_TEXT,
     HIDE_ALERT,
     HIDE_LOADER,
-    SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR,
+    SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR, SET_DIFFICULTY_GAME, SET_DONE_GAME,
     SET_ERRORED_CHAR,
-    SET_PASSED_CHAR,
+    SET_PASSED_CHAR, SET_SPEED, SET_START_GAME,
     SHOW_ALERT,
-    SHOW_LOADER
+    SHOW_LOADER,
+
 } from "./types";
 
 const initialState = {
@@ -14,13 +15,15 @@ const initialState = {
     fetchedText: '',
     showLoader: true,
     showAlert: false,
-    difficultyGame: 1,
+    difficultyGame: 0,
     erroredChar: null,
     passedChar: null,
     currentChar: 0,
     countErrors: 0,
     allChars: 0,
-    accuracy: 100.00
+    accuracy: 100.00,
+    speed: 0,
+    doneGame: false
 }
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -34,6 +37,8 @@ const appReducer = (state = initialState, action) => {
             return {...state, showLoader: false}
         case HIDE_ALERT:
             return {...state, showAlert: false}
+        case SET_DIFFICULTY_GAME:
+            return {...state, difficultyGame: action.difficult}
         case SET_ERRORED_CHAR:
             return {...state, erroredChar: action.key}
         case SET_PASSED_CHAR:
@@ -44,8 +49,14 @@ const appReducer = (state = initialState, action) => {
             return {...state, allChars: action.numb}
         case SET_ACCURACY:
             return {...state, accuracy: action.percent}
+        case SET_SPEED:
+            return {...state, speed: action.speed}
         case SET_CURRENT_CHAR:
             return {...state, currentChar: action.key}
+        case SET_DONE_GAME:
+            return {...state, doneGame: true}
+        case SET_START_GAME:
+            return {...initialState}
         default:
             return {...state}
     }

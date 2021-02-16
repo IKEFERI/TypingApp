@@ -4,7 +4,7 @@ import Accuracy from "./components/Accuracy";
 import Speedometer from "./components/Speedometer";
 import {makeStyles} from "@material-ui/styles";
 import Hints from "./components/Hints";
-import {StartDialog} from "./components/Dialogs";
+import Dialogs from "./components/Dialogs";
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 
 function App() {
     const classes = useStyles();
-
 
     return (
         <StyledEngineProvider injectFirst>
@@ -57,7 +56,7 @@ function App() {
                         </Grid>
                     </Grid>
                 </Container>
-                <StartDialog/>
+                <Dialogs/>
             </div>
         </StyledEngineProvider>
     );

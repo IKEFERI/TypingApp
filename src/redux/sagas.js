@@ -6,10 +6,10 @@ export function* sagaWatcher() {
     yield takeEvery(REQUEST_TEXT, sagaWorker);
 }
 
-function* sagaWorker() {
+function* sagaWorker(action) {
     try {
         yield put(showLoader());
-        const payload = yield call(fetchText);
+        const payload = yield call(fetchText, action);
         yield put({type: FETCH_TEXT, payload});
         yield put(hideLoader());
     } catch (e) {
@@ -20,7 +20,7 @@ function* sagaWorker() {
 
 }
 
-async function fetchText(numbParas = 5) {
-    const response = await fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${numbParas}&format=json`);
+async function fetchText(action) {
+    const response = await fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${action.difficult}&format=json`);
     return response.json();
 }
