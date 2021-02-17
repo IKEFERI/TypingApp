@@ -16,6 +16,4 @@ export const SET_SPEED = 'SET_SPEED';
 export const SET_DONE_GAME = 'SET_DONE_GAME';
 export const SET_START_GAME = 'SET_START_GAME';
 export const SET_DIFFICULTY_GAME = 'SET_DIFFICULTY_GAME';
-
-
-
+export const LAYOUT_KEY_CHECK = 'LAYOUT_KEY_CHECK';

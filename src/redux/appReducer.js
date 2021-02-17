@@ -1,7 +1,7 @@
 import {
     FETCH_TEXT,
     HIDE_ALERT,
-    HIDE_LOADER,
+    HIDE_LOADER, LAYOUT_KEY_CHECK,
     SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR, SET_DIFFICULTY_GAME, SET_DONE_GAME,
     SET_ERRORED_CHAR,
     SET_PASSED_CHAR, SET_SPEED, SET_START_GAME,
@@ -23,6 +23,7 @@ const initialState = {
     allChars: 0,
     accuracy: 100.00,
     speed: 0,
+    layoutKeyCheck: true,
     doneGame: false
 }
 const appReducer = (state = initialState, action) => {
@@ -55,6 +56,8 @@ const appReducer = (state = initialState, action) => {
             return {...state, currentChar: action.key}
         case SET_DONE_GAME:
             return {...state, doneGame: true}
+        case LAYOUT_KEY_CHECK:
+            return {...state, layoutKeyCheck: action.bool}
         case SET_START_GAME:
             return {...initialState}
         default:

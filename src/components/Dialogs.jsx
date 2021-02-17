@@ -112,11 +112,33 @@ const StartDialog = ({handleClose, open, classes}) => {
     );
 }
 
-const FinalDialog = ({handleClose, open, classes}) => {
+const KeyLayoutDialog = ({handleClose, open}) => {
+    return (
+        <Dialog disableEscapeKeyDown open={open}>
+            <DialogTitle onClose={handleClose}>
+                Смените раскладку
+            </DialogTitle>
+            <DialogContent dividers>
+                <Typography gutterBottom style={{textAlign: 'justify', fontSize: '18px'}}>
+                    Обнаружена неправильная раскладка клавиатуры. Пожалуйста, переключитесь на латинскую раскладку
+                    клавиатуры.
+                </Typography>
+            </DialogContent>
+            <DialogActions>
+                <Button autoFocus onClick={handleClose} color="primary">
+                    Ok!
+                </Button>
+            </DialogActions>
+        </Dialog>
+
+    );
+}
+
+const FinalDialog = ({handleClose, open}) => {
     const countErrors = useSelector(state => state.appState.countErrors);
     const accuracy = useSelector(state => state.appState.accuracy);
     const speed = useSelector(state => state.appState.speed);
-
+    const [finalSpeed, setFinalSpeed] = useState(speed);
 
     const resultTextAll = {
         awesome: {
@@ -138,6 +160,11 @@ const FinalDialog = ({handleClose, open, classes}) => {
             title: 'Плохо!',
             text: 'Твой результат очень неочень. Но не отчаивайся, этот тренажер сделает из тебя настоящего профи! Продолжай тренироваться!',
             button: 'Не останавливаться'
+        },
+        slowly: {
+            title: 'Слишком медленно!',
+            text: 'Ты печатал слишком медленно. Нужно набирать темп. Сделай еще несколько попыток, не торопись, но и не медли.',
+            button: 'Ускориться!'
         }
     }
 
@@ -145,6 +172,7 @@ const FinalDialog = ({handleClose, open, classes}) => {
 
 
     useEffect(() => {
+            setResultTextOutput(resultTextAll.awesome);
 
             if (accuracy < 95) {
                 setResultTextOutput(resultTextAll.good);
@@ -157,6 +185,13 @@ const FinalDialog = ({handleClose, open, classes}) => {
             }
         },
         [accuracy]);
+
+    useEffect(() => {
+        setFinalSpeed(speed);
+        if (speed < 90) {
+            setResultTextOutput(resultTextAll.slowly);
+        }
+    }, [open]);
 
 
     return (
@@ -171,9 +206,9 @@ const FinalDialog = ({handleClose, open, classes}) => {
             </DialogContent>
             <DialogContent dividers>
                 <Typography gutterBottom style={{textAlign: 'justify', fontSize: '18px'}}>
-                    Твоя скорость: {speed} знаков в минуту. <br/>
+                    Твоя скорость: {finalSpeed} знаков в минуту. <br/>
                     Точность твоих нажатий {accuracy}% <br/>
-                    Твоих ошибок: {countErrors}
+                    Всего ошибок: {countErrors}
                 </Typography>
             </DialogContent>
             <DialogActions>
@@ -185,13 +220,15 @@ const FinalDialog = ({handleClose, open, classes}) => {
     );
 }
 
+
 const Dialogs = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const [open, setOpen] = useState({
-        startModal: true,
-        difficultModal: false,
-        finalModal: false,
+        startDialog: true,
+        difficultDialog: false,
+        finalDialog: false,
+        keyLayoutDialog: false
     });
 
     const toggleModal = (modal) => {
@@ -202,30 +239,43 @@ const Dialogs = () => {
     };
 
     const currentChar = useSelector(state => state.appState.currentChar);
-    const countErrors = useSelector(state => state.appState.countErrors);
-    const accuracy = useSelector(state => state.appState.accuracy);
     const allChars = useSelector(state => state.appState.allChars);
+
+    const layoutKeyCheck = useSelector(state => state.appState.layoutKeyCheck);
+
 
     useEffect(() => {
         if (currentChar === allChars && allChars !== 0) {
-            toggleModal('finalModal');
+            toggleModal('finalDialog');
         }
     }, [currentChar]);
+
+    useEffect(() => {
+        if (!layoutKeyCheck) {
+            toggleModal('keyLayoutDialog');
+        }
+    }, [layoutKeyCheck])
 
     return (
         <>
             <StartDialog handleClose={() => {
-                toggleModal('startModal')
-                toggleModal('difficultModal')
-            }} open={open.startModal} classes={classes}/>
+                toggleModal('startDialog');
+                toggleModal('difficultDialog');
+            }} open={open.startDialog} classes={classes}/>
+
             <DifficultDialog handleClose={() => {
-                toggleModal('difficultModal')
-            }} open={open.difficultModal} classes={classes}/>
+                toggleModal('difficultDialog');
+            }} open={open.difficultDialog} classes={classes}/>
+
+            <KeyLayoutDialog handleClose={() => {
+                toggleModal('keyLayoutDialog');
+            }} open={open.keyLayoutDialog} classes={classes}/>
+
             <FinalDialog handleClose={() => {
                 dispatch(resetGame());
-                toggleModal('difficultModal');
-                toggleModal('finalModal')
-            }} open={open.finalModal} classes={classes}/>
+                toggleModal('difficultDialog');
+                toggleModal('finalDialog');
+            }} open={open.finalDialog} classes={classes}/>
         </>
     );
 }

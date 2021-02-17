@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Paper, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import useInterval from "../hooks/useInterval";
@@ -9,8 +9,15 @@ const Speedometer = () => {
     const [startTime, setStartTime] = useState((new Date).getTime());
     const [updateTime, setUpdateTime] = useState((new Date).getTime());
     const passedChar = useSelector(state => state.appState.passedChar);
+    const currentChar = useSelector(state => state.appState.currentChar);
     const speed = useSelector(state => state.appState.speed);
     const numSec = 1;
+
+    useEffect(() => {
+        if (currentChar === 1) {
+            setStartTime((new Date).getTime());
+        }
+    }, [currentChar]);
 
     useInterval(() => {
         setUpdateTime(((new Date).getTime() - startTime) / 1000);
