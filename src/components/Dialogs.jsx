@@ -170,7 +170,6 @@ const FinalDialog = ({handleClose, open}) => {
 
     const [resultTextOutput, setResultTextOutput] = useState(resultTextAll.awesome);
 
-
     useEffect(() => {
             setResultTextOutput(resultTextAll.awesome);
 
@@ -194,9 +193,38 @@ const FinalDialog = ({handleClose, open}) => {
     }, [open]);
 
 
+    const results = JSON.parse(localStorage.getItem("results"));
+    const difficult = useSelector(state => state.appState.difficultyGame);
+
+    const setResults = (accuracy, errors, speed, difficult) => {
+        let newResults;
+        const difficultToText = difficult === 1 ? 'Легкий' : difficult === 4 ? 'Нормальный' : 'Сложный';
+        if (results) {
+            newResults = [...results, {
+                accuracy,
+                errors,
+                speed,
+                difficult: difficultToText
+            }];
+        } else {
+            newResults = [{
+                accuracy,
+                errors,
+                speed,
+                difficult: difficultToText
+            }];
+        }
+        localStorage.setItem('results', JSON.stringify(newResults));
+    }
+
+    const setResultWithHandleClose = () => {
+        setResults(accuracy, countErrors, finalSpeed, difficult);
+        handleClose();
+    }
+
     return (
-        <Dialog onClose={handleClose} open={open}>
-            <DialogTitle onClose={handleClose}>
+        <Dialog onClose={setResultWithHandleClose} open={open}>
+            <DialogTitle onClose={setResultWithHandleClose}>
                 {resultTextOutput.title}
             </DialogTitle>
             <DialogContent dividers>
@@ -212,7 +240,7 @@ const FinalDialog = ({handleClose, open}) => {
                 </Typography>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={handleClose} color="primary">
+                <Button autoFocus onClick={setResultWithHandleClose} color="primary">
                     {resultTextOutput.button}
                 </Button>
             </DialogActions>
@@ -240,8 +268,8 @@ const Dialogs = () => {
 
     const currentChar = useSelector(state => state.appState.currentChar);
     const allChars = useSelector(state => state.appState.allChars);
-
     const layoutKeyCheck = useSelector(state => state.appState.layoutKeyCheck);
+    const reset = useSelector(state => state.appState.reset);
 
 
     useEffect(() => {
@@ -251,10 +279,16 @@ const Dialogs = () => {
     }, [currentChar]);
 
     useEffect(() => {
+        if (reset) {
+            toggleModal('difficultDialog');
+        }
+    }, [reset]);
+
+    useEffect(() => {
         if (!layoutKeyCheck) {
             toggleModal('keyLayoutDialog');
         }
-    }, [layoutKeyCheck])
+    }, [layoutKeyCheck]);
 
     return (
         <>
@@ -273,7 +307,6 @@ const Dialogs = () => {
 
             <FinalDialog handleClose={() => {
                 dispatch(resetGame());
-                toggleModal('difficultDialog');
                 toggleModal('finalDialog');
             }} open={open.finalDialog} classes={classes}/>
         </>

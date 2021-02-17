@@ -26,7 +26,7 @@ const Speedometer = () => {
     }, numSec * 1000);
 
     return (
-        <Paper style={{padding: "24px", marginBottom: "36px"}}>
+        <Paper style={{padding: "24px"}}>
             <Typography style={{fontSize: '24px', fontWeight: 600}}>
                 Знаков в минуту: {speed}
             </Typography>

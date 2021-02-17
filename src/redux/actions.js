@@ -1,6 +1,6 @@
 import {
     HIDE_LOADER, LAYOUT_KEY_CHECK,
-    REQUEST_TEXT, SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR, SET_DIFFICULTY_GAME, SET_DONE_GAME,
+    REQUEST_TEXT, SET_ACCURACY, SET_ALL_CHARS, SET_COUNT_ERRORS, SET_CURRENT_CHAR, SET_DIFFICULTY_GAME,
     SET_ERRORED_CHAR,
     SET_PASSED_CHAR, SET_SPEED, SET_START_GAME,
     SHOW_ALERT,
@@ -53,10 +53,6 @@ export function setSpeed(speed) {
 
 export function layoutKeyCheck(bool) {
     return {type: LAYOUT_KEY_CHECK, bool}
-}
-
-export function setDoneGame() {
-    return {type: SET_DONE_GAME}
 }
 
 export function resetGame() {
