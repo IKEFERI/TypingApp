@@ -45,10 +45,17 @@ function FetchedText() {
     }, [text,resetGame]);
 
     useEffect(() => {
-
+        document.onkeydown = function(e){
+            const keyCode = e.keyCode || e.charCode;
+            if (keyCode === 32) e.preventDefault();
+        };
         const keyPressedListener = e => {
             let keyPressed = e.key;
             let char = text[currentChar];
+
+            if(e.code === 'Space'){
+                e.preventDefault();
+            }
 
             if(keyPressed === 'Shift' || keyPressed === 'Alt'){
                 return true;

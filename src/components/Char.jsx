@@ -4,16 +4,16 @@ import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles({
     passed: {
-        color: 'greenyellow'
+        color: '#00bb0985'
     },
     next: {
-        backgroundColor: 'aquamarine',
+        backgroundColor: '#00b377',
         padding: '3px',
         borderRadius: '4px',
         color: '#fff'
     },
     errored: {
-        backgroundColor: 'red',
+        backgroundColor: '#ff4646',
         padding: '3px',
         borderRadius: '4px',
         color: '#fff'
