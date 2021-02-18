@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Paper, Typography} from "@material-ui/core";
+import {Grid, Paper, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import useInterval from "../hooks/useInterval";
 import {setSpeed} from "../redux/actions";
@@ -26,11 +26,13 @@ const Speedometer = () => {
     }, numSec * 1000);
 
     return (
-        <Paper style={{padding: "24px"}}>
-            <Typography style={{fontSize: '24px', fontWeight: 600}}>
-                Знаков в минуту: {speed}
-            </Typography>
-        </Paper>
+        <Grid item xs={12} sm={4}>
+            <Paper style={{padding: "24px"}}>
+                <Typography style={{fontSize: '24px', fontWeight: 600}}>
+                    Зн./мин.: {speed}
+                </Typography>
+            </Paper>
+        </Grid>
     );
 };
 

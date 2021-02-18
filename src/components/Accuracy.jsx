@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setAccuracy, setCountErrors} from "../redux/actions";
-import {Paper, Typography} from "@material-ui/core";
+import {Grid, Paper, Typography} from "@material-ui/core";
 
 const Accuracy = () => {
     const dispatch = useDispatch();
@@ -25,9 +25,19 @@ const Accuracy = () => {
     }, [countErrors]);
 
     return (
-        <Paper style={{padding: "24px"}}>
-            <Typography style={{fontSize: '24px', fontWeight: 600}}>Ошибки: {countErrors} <br/> Точность нажатий: {accuracy}%</Typography>
-        </Paper>
+        <>
+            <Grid item xs={12} sm={4}>
+                <Paper style={{padding: "24px"}}>
+                    <Typography style={{fontSize: '24px', fontWeight: 600}}>Точность: {accuracy}%</Typography>
+                </Paper>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+                <Paper style={{padding: "24px"}}>
+                    <Typography style={{fontSize: '24px', fontWeight: 600}}>Ошибки: {countErrors}</Typography>
+                </Paper>
+            </Grid>
+        </>
+
     );
 };
 
