@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/TypingApp/static/css/main.5cc68b14.chunk.css",
+    "main.js": "/TypingApp/static/js/main.9ccfc5ff.chunk.js",
+    "main.js.map": "/TypingApp/static/js/main.9ccfc5ff.chunk.js.map",
+    "runtime-main.js": "/TypingApp/static/js/runtime-main.6ef7ca2a.js",
+    "runtime-main.js.map": "/TypingApp/static/js/runtime-main.6ef7ca2a.js.map",
+    "static/js/2.00cef2a8.chunk.js": "/TypingApp/static/js/2.00cef2a8.chunk.js",
+    "static/js/2.00cef2a8.chunk.js.map": "/TypingApp/static/js/2.00cef2a8.chunk.js.map",
+    "static/js/3.81d9e603.chunk.js": "/TypingApp/static/js/3.81d9e603.chunk.js",
+    "static/js/3.81d9e603.chunk.js.map": "/TypingApp/static/js/3.81d9e603.chunk.js.map",
+    "index.html": "/TypingApp/index.html",
+    "static/css/main.5cc68b14.chunk.css.map": "/TypingApp/static/css/main.5cc68b14.chunk.css.map",
+    "static/js/2.00cef2a8.chunk.js.LICENSE.txt": "/TypingApp/static/js/2.00cef2a8.chunk.js.LICENSE.txt",
+    "static/media/handskeyword.8715008e.png": "/TypingApp/static/media/handskeyword.8715008e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ef7ca2a.js",
+    "static/js/2.00cef2a8.chunk.js",
+    "static/css/main.5cc68b14.chunk.css",
+    "static/js/main.9ccfc5ff.chunk.js"
+  ]
+}
