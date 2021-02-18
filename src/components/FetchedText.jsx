@@ -32,7 +32,6 @@ function FetchedText() {
     const showLoader = useSelector(state => state.appState.showLoader);
     const erroredChar = useSelector(state => state.appState.erroredChar);
     const currentChar = useSelector(state => state.appState.currentChar);
-    const layoutKeyCheckState = useSelector(state => state.appState.currentChar);
 
     useEffect(() => {
         if(difficulty){
@@ -45,10 +44,6 @@ function FetchedText() {
     }, [text,resetGame]);
 
     useEffect(() => {
-        document.onkeydown = function(e){
-            const keyCode = e.keyCode || e.charCode;
-            if (keyCode === 32) e.preventDefault();
-        };
         const keyPressedListener = e => {
             let keyPressed = e.key;
             let char = text[currentChar];
