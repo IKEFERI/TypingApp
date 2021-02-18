@@ -2,7 +2,7 @@
 
 Данное React приложение разработано на основе шаблона [Create React App](https://github.com/facebook/create-react-app)
 
-###Попробуйте здесь:
+### Попробуйте здесь:
 
 ## [TypingApp](https://ikeferi.github.io/TypingApp/)
 ###
