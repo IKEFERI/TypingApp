@@ -32,6 +32,8 @@ function FetchedText() {
     const showLoader = useSelector(state => state.appState.showLoader);
     const erroredChar = useSelector(state => state.appState.erroredChar);
     const currentChar = useSelector(state => state.appState.currentChar);
+    const allChars = useSelector(state => state.appState.allChars);
+
 
     useEffect(() => {
         if(difficulty){
@@ -48,12 +50,12 @@ function FetchedText() {
             let keyPressed = e.key;
             let char = text[currentChar];
 
-            if(e.code === 'Space'){
-                e.preventDefault();
+            if(currentChar === allChars){
+                return;
             }
 
             if(keyPressed === 'Shift' || keyPressed === 'Alt'){
-                return true;
+                return;
             }
 
             if(checkKeyboard(e)){
@@ -71,12 +73,16 @@ function FetchedText() {
             }
         }
 
+        document.onkeydown = (e)=>{
+            if (e.code === 'Space') e.preventDefault();
+        };
+
         document.addEventListener('keydown', keyPressedListener);
 
         return () => {
             document.removeEventListener('keydown', keyPressedListener);
         }
-    }, [currentChar, text, erroredChar]);
+    }, [currentChar, text, erroredChar,allChars]);
 
 
     if (showLoader) {
