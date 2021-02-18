@@ -1,4 +1,4 @@
-import {Container, Grid, Paper, StyledEngineProvider, Typography} from "@material-ui/core";
+import {Container, Grid, StyledEngineProvider} from "@material-ui/core";
 import Accuracy from "./components/Accuracy";
 import Speedometer from "./components/Speedometer";
 import {makeStyles} from "@material-ui/styles";
