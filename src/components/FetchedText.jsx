@@ -73,10 +73,6 @@ function FetchedText() {
             }
         }
 
-        document.onkeydown = (e)=>{
-            if (e.code === 'Space') e.preventDefault();
-        };
-
         document.addEventListener('keydown', keyPressedListener);
 
         return () => {

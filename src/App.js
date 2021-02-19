@@ -1,4 +1,4 @@
-import {Container, Grid, StyledEngineProvider} from "@material-ui/core";
+import {Box, Container, Grid, StyledEngineProvider} from "@material-ui/core";
 import Accuracy from "./components/Accuracy";
 import Speedometer from "./components/Speedometer";
 import {makeStyles} from "@material-ui/styles";
@@ -7,6 +7,7 @@ import ResultsTable from "./components/ResultsTable";
 import Text from "./components/Text";
 import HintsContainer from "./components/Hints";
 import Title from "./components/Title";
+import {useRef} from "react";
 
 const useStyles = makeStyles({
     root: {
@@ -20,9 +21,16 @@ const useStyles = makeStyles({
 
 function App() {
     const classes = useStyles();
+    const input = useRef(null);
+
     return (
         <StyledEngineProvider injectFirst>
-            <div className={classes.root}>
+            <div className={classes.root} onClick={() => {
+                input.current.focus();
+            }}>
+                <Box style={{position: 'absolute', left: '-200%'}}>
+                    <input type="text" ref={input}/>
+                </Box>
                 <Container maxWidth="md" className={classes.padding}>
                     <Grid container spacing={4}>
 
