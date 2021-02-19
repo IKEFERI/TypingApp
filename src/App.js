@@ -7,7 +7,7 @@ import ResultsTable from "./components/ResultsTable";
 import Text from "./components/Text";
 import HintsContainer from "./components/Hints";
 import Title from "./components/Title";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
 const useStyles = makeStyles({
     root: {
@@ -23,11 +23,13 @@ function App() {
     const classes = useStyles();
     const input = useRef(null);
 
+    useEffect(() => {
+        input.current.focus();
+    }, []);
+
     return (
         <StyledEngineProvider injectFirst>
-            <div className={classes.root} onClick={() => {
-                input.current.focus();
-            }}>
+            <div className={classes.root} onClick={() => input.current.focus()}>
                 <Box style={{position: 'absolute', left: '-200%'}}>
                     <input type="text" ref={input}/>
                 </Box>
