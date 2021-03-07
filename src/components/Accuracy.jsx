@@ -5,11 +5,9 @@ import {Grid, Paper, Typography} from "@material-ui/core";
 
 const Accuracy = () => {
     const dispatch = useDispatch();
-    const countErrors = useSelector(state => state.appState.countErrors);
-    const erroredChar = useSelector(state => state.appState.erroredChar);
-    const accuracy = useSelector(state => state.appState.accuracy);
-    const allChars = useSelector(state => state.appState.allChars);
+    const { countErrors, erroredChar, accuracy, allChars} = useSelector(state => state.appState)
 
+    // TODO: будь внимателен к зависимостям в useEffect здесь не хватате 
     useEffect(() => {
         if (erroredChar) {
             dispatch(setCountErrors(countErrors + 1));
@@ -17,6 +15,7 @@ const Accuracy = () => {
         }
     }, [erroredChar]);
 
+    // TODO: здесь так же забыл указать allChars, dispatch
     useEffect(() => {
         const newAccuracy = (1000 - Math.round(1000 * countErrors / allChars)) / 10;
         if (newAccuracy) {

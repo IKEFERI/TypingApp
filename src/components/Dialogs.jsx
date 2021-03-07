@@ -7,18 +7,10 @@ import DifficultDialog from "./dialogs/DifficultDialog";
 import KeyLayoutDialog from "./dialogs/KeyLayoutDialog";
 import FinalDialog from "./dialogs/FinalDialog";
 
-const useStyles = makeStyles({
-    image: {
-        marginBottom: '8px'
-    },
-    margin: {
-        margin: '8px'
-    },
-});
-
 const Dialogs = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
+
     const [open, setOpen] = useState({
         startDialog: true,
         difficultDialog: false,
@@ -33,17 +25,15 @@ const Dialogs = () => {
         }));
     };
 
-    const currentChar = useSelector(state => state.appState.currentChar);
-    const allChars = useSelector(state => state.appState.allChars);
-    const layoutKeyCheck = useSelector(state => state.appState.layoutKeyCheck);
+    const { currentChar, allChars, layoutKeyCheck } = useSelector(state => state.appState)
     const reset = useSelector(state => state.appState.reset);
 
-
+    // TODO: не все параметры в зависимостях
     useEffect(() => {
         if (currentChar === allChars && allChars !== 0) {
             toggleModal('finalDialog');
         }
-    }, [currentChar]);
+    }, [currentChar, allChars]);
 
     useEffect(() => {
         if (reset) {
@@ -79,5 +69,14 @@ const Dialogs = () => {
         </>
     );
 }
+
+const useStyles = makeStyles({
+    image: {
+        marginBottom: '8px'
+    },
+    margin: {
+        margin: '8px'
+    },
+});
 
 export default Dialogs;

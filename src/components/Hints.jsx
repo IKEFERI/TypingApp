@@ -4,12 +4,24 @@ import CustomAlert from "./CustomAlert";
 import {Grid, Paper} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 
+const HintsContainer = () => {
+    const classes = useStyles();
+    const { showLoader, erroredChar, passedChar, showAlert} = useSelector(state => state.appState)
+
+    return (
+        <Grid item xs={12}>
+            <Paper className={classes.paper}>
+                <Hints {...{passedChar, erroredChar,showAlert, showLoader}}/>
+            </Paper>
+        </Grid>
+    )
+};
+
 const useStyles = makeStyles({
     paper: {
         padding: '24px'
     },
 });
-
 
 const Hints = ({showAlert, showLoader, erroredChar, passedChar}) => {
     if (showAlert) {
@@ -37,23 +49,5 @@ const Hints = ({showAlert, showLoader, erroredChar, passedChar}) => {
 }
 
 
-const HintsContainer = () => {
-    const classes = useStyles();
-    const showLoader = useSelector(state => state.appState.showLoader);
-    const erroredChar = useSelector(state => state.appState.erroredChar);
-    const passedChar = useSelector(state => state.appState.passedChar);
-    const showAlert = useSelector(state => state.appState.showAlert);
-
-    useEffect(() => {
-    }, [showLoader, erroredChar, passedChar]);
-
-    return (
-        <Grid item xs={12}>
-            <Paper className={classes.paper}>
-                <Hints {...{passedChar, erroredChar,showAlert, showLoader}}/>
-            </Paper>
-        </Grid>
-    )
-};
 
 export default HintsContainer;

@@ -2,25 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {makeStyles} from "@material-ui/styles";
 
-const useStyles = makeStyles({
-    passed: {
-        color: '#00bb0985'
-    },
-    next: {
-        backgroundColor: '#00b377',
-        padding: '3px',
-        borderRadius: '4px',
-        color: '#fff'
-    },
-    errored: {
-        backgroundColor: '#ff4646',
-        padding: '3px',
-        borderRadius: '4px',
-        color: '#fff'
-    }
-});
-
-
 const Char = ({id, char}) => {
     const classes = useStyles();
     const [className, setClassName] = useState('default');
@@ -44,5 +25,23 @@ const Char = ({id, char}) => {
         <span id={id} className={className}>{char}</span>
     );
 };
+
+const useStyles = makeStyles({
+    passed: {
+        color: '#00bb0985'
+    },
+    next: {
+        backgroundColor: '#00b377',
+        padding: '3px',
+        borderRadius: '4px',
+        color: '#fff'
+    },
+    errored: {
+        backgroundColor: '#ff4646',
+        padding: '3px',
+        borderRadius: '4px',
+        color: '#fff'
+    }
+});
 
 export default Char;

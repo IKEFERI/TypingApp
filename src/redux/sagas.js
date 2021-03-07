@@ -16,8 +16,6 @@ function* sagaWorker(action) {
         yield put(showAlert());
         yield put(hideLoader());
     }
-
-
 }
 
 async function fetchText(action) {

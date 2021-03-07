@@ -3,28 +3,13 @@ import {useSelector} from "react-redux";
 import {Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650
-
-    },
-    row: {
-        fontSize: '18px'
-    },
-    hideLastBorder: {
-        '&:last-child td, &:last-child th': {
-            border: 0,
-        },
-    },
-});
-
 const ResultsTable = () => {
     const classes = useStyles();
-    let results = JSON.parse(localStorage.getItem("results"));
-    const reset = useSelector(state => state.appState.reset);
-    useEffect(() => {
-        results = JSON.parse(localStorage.getItem("results"));
-    }, [reset]);
+    useSelector(state => state.appState.reset);
+    
+    // TODO: странная конструкция ...
+    const results = JSON.parse(localStorage.getItem("results"));
+
 
     if (results) {
         return (
@@ -58,5 +43,19 @@ const ResultsTable = () => {
     }
     return <Grid item xs={12}><Paper style={{padding: '16px', fontSize: '18px', fontWeight: '700'}}>Здесь отобразятся ваши попытки.</Paper></Grid>
 };
+
+const useStyles = makeStyles({
+    table: {
+        minWidth: 650
+    },
+    row: {
+        fontSize: '18px'
+    },
+    hideLastBorder: {
+        '&:last-child td, &:last-child th': {
+            border: 0,
+        },
+    },
+});
 
 export default ResultsTable;

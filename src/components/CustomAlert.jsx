@@ -1,15 +1,7 @@
 import React from 'react';
 import Alert from '@material-ui/core/Alert';
 import {makeStyles} from "@material-ui/styles";
-
-const useStyles = makeStyles({
-    commonAlert: {
-        minHeight: '56px',
-        display: "flex",
-        alignItems: "center"
-    }
-});
-
+// TODO: так же кавычки в импортах
 
 const CustomAlert = ({text, severity, style}) => {
     const classes = useStyles();
@@ -20,5 +12,14 @@ const CustomAlert = ({text, severity, style}) => {
         </Alert>
     );
 };
+
+// TODO: нужно определится с кавычками двойные или одинарные а лучше поставить ESLinter
+const useStyles = makeStyles({
+    commonAlert: {
+        minHeight: '56px',
+        display: "flex",
+        alignItems: "center"
+    }
+});
 
 export default CustomAlert;
