@@ -31,7 +31,7 @@ export default function useSpeedMeasurement() {
   useEffect(() => {
     if ((passedChar + 1)  === allChars) {
       dispatch(setSpeed(currentSpeed))
-      clearInterval(timerId)
+      clearTimeout(timerId)
     }
   }, [passedChar, allChars, dispatch, currentSpeed, timerId])
 
